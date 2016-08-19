@@ -1,6 +1,5 @@
 {
   "name": "gs-button",
-  "version": "1.0-beta",
   "description": "Grandstop Button",
   "main": "gs-button.html",
   "keywords": [
@@ -10,6 +9,10 @@
     "grandstop",
     "button"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grandstop/gs-button.git"
+  },
   "authors": [
     "The Grandstop Authors"
   ],
