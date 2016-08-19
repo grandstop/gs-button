@@ -1,0 +1,79 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
+
+
+<dom-module id="gs-button">
+  <template>
+    <style is="custom-style">
+      :host {
+        background-color: hsl(var(--background-hue), var(--background-saturation), var(--background-lightness));
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-family: var(--font-sans);
+        font-size: 1.3rem;
+        -webkit-appearance: none;
+        padding: .75em 1.2em;
+        position:relative;
+        border:0;
+        margin:10px 2px;
+      }
+      :host(.sm) {
+        font-size: 1rem;
+        padding: .71em 1em;
+        margin-bottom: .1em;
+      }
+      :host(.default) ::content iron-icon {
+        top: -.1em;
+        left: -5px;
+        vertical-align: middle;
+        margin: -1em 0;
+      }
+      :host(.default) {
+        top: -4px;
+        color: var(--primary-text-color);
+        border-radius: .3rem;
+        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 1px 0 0 #BEBEBE, 0 1px 1px 1px rgba(0,0,0,.2);
+        transition: all 40ms linear;
+      }
+      :host(.default.primary) {
+        background-color: hsl(150, 60%, 85%);
+        box-shadow:0 0 0 1px hsl(150, 60%, 85%) inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 1px 0 0 #BEBEBE, 0 1px 1px 1px rgba(0,0,0,.2);
+        color: hsl(0, 0%, 25%);
+      }
+      :host(.default:hover), :host(.default:focus) {
+        -moz-outline-style:none;
+        outline:medium none;
+        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 3px 0 0 #BEBEBE, 0 3px 3px 1px rgba(0,0,0,.2);
+        top: -6px;
+      }
+      :host(.default.primary:hover), :host(.default.primary:focus) {
+        -moz-outline-style:none;
+        outline:medium none;
+        box-shadow:0 0 0 1px hsl(150, 60%, 85%) inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 3px 0 0 #BEBEBE, 0 3px 3px 1px rgba(0,0,0,.2);
+        top: -6px;
+      }
+      :host(.default:active), :host(.default.primary:active) {
+        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset;
+        top: -3px;
+      }
+
+      paper-ripple {
+        color: var(--paper-button-ink-color);
+      }
+    </style>
+    <content></content>
+  </template>
+</dom-module>
+
+<script>
+  Polymer ({
+    is: 'gs-button',
+    extends: 'button',
+    behaviors: [
+      Polymer.PaperButtonBehavior
+    ]
+  });
+</script>

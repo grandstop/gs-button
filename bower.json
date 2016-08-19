@@ -1,0 +1,32 @@
+{
+  "name": "gs-button",
+  "version": "1.0-beta",
+  "description": "Grandstop Button",
+  "main": "gs-button.html",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "grandstop",
+    "button"
+  ],
+  "authors": [
+    "The Grandstop Authors"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0"
+  }
+}
