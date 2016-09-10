@@ -1,79 +1,154 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-behaviors/iron-button-state.html">
+<link rel="import" href="../paper-behaviors/paper-ripple-behavior.html">
 
 
 <dom-module id="gs-button">
   <template>
     <style is="custom-style">
       :host {
-        background-color: hsl(var(--background-hue), var(--background-saturation), var(--background-lightness));
+        @apply(--layout-inline);
+        @apply(--layout-center-center);
+        position: relative;
+        background: hsl(0,0%,97%);
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
         user-select: none;
         font-family: var(--font-sans);
-        font-size: 1.3rem;
+        font-weight: 400;
+        font-size: 20px;
         -webkit-appearance: none;
-        padding: .75em 1.2em;
         position:relative;
+        -webkit-border-radius:  var(--radius); 
+        -moz-border-radius:  var(--radius); 
+        border-radius: var(--radius);
+        -webkit-background-clip: padding-box; 
+        -moz-background-clip: padding; 
+        background-clip: padding-box;
         border:0;
-        margin:10px 2px;
+        margin:8px 2px;
+        padding: 0;
+        color: var(--text-color);
+        text-shadow: 0px 0px 3px rgba(150, 150, 150, .75);
+        text-transform: uppercase;
+        overflow: hidden;
+        outline: none !important;
       }
-      :host(.sm) {
-        font-size: 1rem;
-        padding: .71em 1em;
-        margin-bottom: .1em;
+      :host(:not(.flat)) {
+        background: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
-      :host(.default) ::content iron-icon {
-        top: -.1em;
-        left: -5px;
-        vertical-align: middle;
-        margin: -1em 0;
+      .container {
+        box-sizing: border-box;
+        height: 56px;
+        display: block;
+        @apply(--layout-inline);
+        @apply(--layout-center);
+        width: auto;
+        text-align: center;
+        padding: 1px 29px;
+        margin: -1px -5px;
+        transition: all 0.3s ease 0s;
       }
-      :host(.default) {
-        top: -4px;
-        color: var(--primary-text-color);
-        border-radius: .3rem;
-        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 1px 0 0 #BEBEBE, 0 1px 1px 1px rgba(0,0,0,.2);
-        transition: all 40ms linear;
+      :host(:focus) .container {
+        box-shadow: var(--button-active-shadow);
       }
-      :host(.default.primary) {
-        background-color: hsl(150, 60%, 85%);
-        box-shadow:0 0 0 1px hsl(150, 60%, 85%) inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 1px 0 0 #BEBEBE, 0 1px 1px 1px rgba(0,0,0,.2);
+      :host([block]) .container {
+        width: 100%;
+        @apply(--layout-center-center);
+      }
+      :host([small]) {
+        font-size: 16px;
+        font-weight: 600;
+        text-shadow: 0px 0px 3px rgba(150, 150, 150, .55);
+        color: hsla(0,0%,0%,0.69);
+      }
+      :host([small]) .container {
+        height: 48px;
+        padding: 0 20px;
+      }
+      :host([primary]) {
+        background-color: hsl(var(--accent-hue), 65%, 50%);
+        box-shadow:0 0 0 1px hsl(var(--accent-hue), 60%, 85%) inset, 0 0 0 2px hsla(var(--accent-hue), 60%, 45%, 0.40) inset, 0 1px 0 0 hsls(var(--accent-hue), 60%, 75%, 0.40), 0 1px 1px 1px rgba(0,0,0,.2);
         color: hsl(0, 0%, 25%);
+        color: white;
+        text-shadow: 0px 0px 3px rgba(150, 150, 150, .75);
       }
-      :host(.default:hover), :host(.default:focus) {
-        -moz-outline-style:none;
-        outline:medium none;
-        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 3px 0 0 #BEBEBE, 0 3px 3px 1px rgba(0,0,0,.2);
-        top: -6px;
+      :host([primary]:focus) .container {
+        box-shadow: inset 0px -5px 0px 0px hsla(var(--accent-hue),90%,70%,0.75);;
       }
-      :host(.default.primary:hover), :host(.default.primary:focus) {
-        -moz-outline-style:none;
-        outline:medium none;
-        box-shadow:0 0 0 1px hsl(150, 60%, 85%) inset, 0 0 0 2px rgba(255,255,255,0.10) inset, 0 3px 0 0 #BEBEBE, 0 3px 3px 1px rgba(0,0,0,.2);
-        top: -6px;
+      :host([block]) {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
       }
-      :host(.default:active), :host(.default.primary:active) {
-        box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.10) inset;
-        top: -3px;
-      }
-
       paper-ripple {
-        color: var(--paper-button-ink-color);
+        color: var(--ripple-color);
+      }
+      :host(.flat)) {
+        background-color: transparent;
       }
     </style>
-    <content></content>
+    <div class="container">
+      <content></content>
+    </div>
   </template>
 </dom-module>
 
 <script>
   Polymer ({
+
     is: 'gs-button',
+
     extends: 'button',
+
+    properties: {
+      clsButton: {
+        type: String,
+        reflectToAttribute: true
+      }
+    },
+
     behaviors: [
-      Polymer.PaperButtonBehavior
-    ]
+      Polymer.IronButtonState,
+      Polymer.IronControlState,
+      Polymer.PaperRippleBehavior,
+    ],
+
+    observers: [
+      '_computeKeyboardClass(receivedFocusFromKeyboard)'
+    ],
+
+    _computeKeyboardClass: function(receivedFocusFromKeyboard) {
+      this.toggleClass('keyboard-focus', receivedFocusFromKeyboard);
+    },
+
+    /**
+     * In addition to `IronButtonState` behavior, when space key goes down,
+     * create a ripple down effect.
+     *
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyDownHandler: function(event) {
+      Polymer.IronButtonStateImpl._spaceKeyDownHandler.call(this, event);
+      // Ensure that there is at most one ripple when the space key is held down.
+      if (this.hasRipple() && this.getRipple().ripples.length < 1) {
+        this._ripple.uiDownAction();
+      }
+    },
+
+    /**
+     * In addition to `IronButtonState` behavior, when space key goes up,
+     * create a ripple up effect.
+     *
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyUpHandler: function(event) {
+      Polymer.IronButtonStateImpl._spaceKeyUpHandler.call(this, event);
+      if (this.hasRipple()) {
+        this._ripple.uiUpAction();
+      }
+    }
+
   });
 </script>
